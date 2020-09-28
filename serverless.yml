@@ -1,0 +1,45 @@
+service: multistackdemo
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+  stage: dev
+  region: eu-west-1
+
+functions:
+  hello:
+    handler: handler.hello
+
+custom:
+  nested-stacks:
+    location:                       # Where do you keep your nested stacks?
+    stacks:
+      - id: MyGroovyNestedStack                  # Logical ID (Required)
+        template: serverless-b/cloudformation-template-update-stack.json            # Template file name (Required)
+        enabled: true                            # optional flag for enabled/disabling substack
+        timeout: 60                              # Minutes before stack creation times out.
+        parameters:                              # Stack parameters as key value pairs
+          - InstanceType: t1.micro
+          - BlahBlah: abc123
+        tags:                                    # Stack tags
+          - CustomTag: Yolo
+        notifications:                           # Notification ARN's for SNS
+          - arn:aws:sns:region:account-id:topicname
+
+# you can add CloudFormation resource templates here
+resources:
+  Resources:
+    NewResource:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: my-new-bucket-ab28ff12-b1c8-491c-b47a-bd765d3f42e5
+
+
+
+
+
+
+
+plugins:
+  - serverless-aws-nested-stacks
