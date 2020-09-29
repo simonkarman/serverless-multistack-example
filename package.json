@@ -5,9 +5,6 @@
   "main": "handler.js",
   "dependencies": {
     "serverless": "^1.59.3",
-    "serverless-aws-nested-stacks": "^0.1.2"
-  },
-  "devDependencies": {
     "serverless-import-apigateway": "^1.1.1"
   },
   "scripts": {
