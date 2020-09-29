@@ -4,11 +4,12 @@
   "description": "",
   "main": "handler.js",
   "dependencies": {
+    "serverless": "^1.59.3",
     "serverless-aws-nested-stacks": "^0.1.2"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "sls deploy"
   },
   "author": "",
   "license": "ISC"

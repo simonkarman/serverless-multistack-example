@@ -1,9 +1,12 @@
-Recources:
+AWSTemplateFormatVersion: 2010-09-09
+Description: The AWS CloudFormation template the Serverless B stack of the example application
+
+Resources:
   TheBestBucketEverCreated:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: my-new-bucket-331b7f25-9217-4280-b70a-7a3a4a33ee80
+      BucketName: mutlistack-example-bucket-331b7f25-9217-4280-b70a-7a3a4a33ee80
 
 Outputs:
-  TheBestBucketEverCreatedArn:
+  TheBestBucketEverCreatedName:
     Value: !Ref TheBestBucketEverCreated

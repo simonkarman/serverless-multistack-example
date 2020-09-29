@@ -14,7 +14,7 @@ functions:
       S3BUCKET_ARN:
         Fn::GetAtt:
          - ServerlessB
-         - Outputs.TheBestBucketEverCreatedArn
+         - Outputs.TheBestBucketEverCreatedName
 
 custom:
   nested-stacks:
