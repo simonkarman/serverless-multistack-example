@@ -7,9 +7,11 @@
     "serverless": "^1.59.3",
     "serverless-aws-nested-stacks": "^0.1.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "serverless-import-apigateway": "^1.1.1"
+  },
   "scripts": {
-    "deploy": "sls deploy"
+    "deploy": "sls deploy --config stack-root.yml && sls deploy --config stack-sub-a.yml"
   },
   "author": "",
   "license": "ISC"

@@ -1,0 +1,37 @@
+service: multistack-root
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-west-1
+
+functions:
+  example-root-get:
+    handler: handler.hello
+    events:
+      - http:
+          path: example
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    ItemTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: "Id"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "Id"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+
+  Outputs:
+    MultiStackRootItemTable:
+      Value: !Ref ItemTable
+      Export:
+        Name: multistack-root-${self:provider.stage}-item-table

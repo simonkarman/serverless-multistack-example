@@ -1,0 +1,26 @@
+service: multistack-sub-a
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-west-1
+
+custom:
+  importApiGateway:
+    name: ${self:provider.stage}-multistack-root
+
+functions:
+  item-get:
+    handler: handler.hello
+    events:
+      - http:
+          path: item/{id}
+          method: get
+          cors: true
+    environment:
+      ITEM_TABLE_NAME:
+        Fn::ImportValue: multistack-root-${self:provider.stage}-item-table
+
+plugins:
+  - serverless-import-apigateway
